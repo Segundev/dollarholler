@@ -1,17 +1,43 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import Close from '$lib/components/icons/Close.svelte';
 	import Hamburger from '$lib/components/icons/Hamburger.svelte';
+	import { append } from 'svelte/internal';
+
+	let isNavShowing = false;
 </script>
 
+<svelte:head>
+	{#if isNavShowing}
+		<style lang="postcss">
+			body {
+				@apply overflow-hidden md:overflow-auto;
+			}
+		</style>
+	{/if}
+</svelte:head>
+
 <!-- Mobile Nav Control -->
-<button class="fixed right-6 top-6">
-	<Close width={32} height={32} />
-	<Hamburger width={32} height={32} />
+<button
+	class="fixed right-6 top-6 z-navBarToggle"
+	class:text-goldenFizz={isNavShowing}
+	class:text-daisyBush={!isNavShowing}
+	on:click={() => {
+		isNavShowing = !isNavShowing;
+	}}
+>
+	{#if isNavShowing}
+		<Close width={32} height={32} />
+	{:else}
+		<Hamburger width={32} height={32} />
+	{/if}
 </button>
 
-<header class="col-span-3 bg-daisyBush text-center">
-	<div class="mt-10 mb-10">
+<header
+	class="fixed z-navBar h-screen w-full -translate-x-full transition-transform md:translate-x-0 md:relative md:col-span-3 bg-daisyBush text-center"
+	class:translate-x-0={isNavShowing}
+>
+	<div class="mt-10 mb-10 md:mb-24">
 		<a href="/invoices">
 			<img src="/images/logo.svg" alt="The Dollar Holler" class="mx-auto" />
 		</a>

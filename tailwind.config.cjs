@@ -3,11 +3,17 @@ module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		fontFamily: {
-			sansSerif: ['Source Sans Pro', 'sans-serif'],
-			mono: ['Source Code Pro', 'monospace'],
+			sansSerif: ['"Source Sans Pro"', 'sans-serif'],
+			mono: ['"Source Code Pro"', 'monospace'],
 			handwriting: ['Kalam', 'cursive']
 		},
 		extend: {
+			boxShadow: {
+				colored: '0px 7px 16px rgba(127, 91, 220, 0.002)',
+				coloredHover: '0px 16px 25px rgba(127, 91, 220, 0.3)',
+				tableRow: '0px 0px 6px rgba(0, 0, 0, 0.16)'
+			},
+
 			colors: {
 				lavenderIndigo: '#8657e1',
 				daisyBush: '#4714a5',
@@ -24,6 +30,10 @@ module.exports = {
 				gallery: '#efeaf2',
 				caribbeanGreen: '#00ca9e',
 				fog: '#decaec'
+			},
+
+			gridTemplateColumns: {
+				invoiceTable: '100px 100px 60px 1fr 116px 32px 32px'
 			},
 
 			zIndex: {
